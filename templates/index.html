@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login</title>
+		
+	</head>
+	<style>
+
+		.login h1 {
+		font-size: 24px;
+		margin-bottom: 20px;
+		}
+
+		.login .links a {
+		text-decoration: none;
+		color: #337ab7;
+		margin: 0 10px;
+		padding: 5px 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		}
+
+		.login .links a.active {
+		background-color: #337ab7;
+		color: #fff;
+		}
+
+		.login form label {
+		display: block;
+		margin: 10px 0;
+		}
+
+		.login form input[type="text"],
+		.login form input[type="password"] {
+		width: 75%;
+		padding: 10px;
+		margin: 5px 0;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		}
+
+		.login form .msg {
+		color: #ff0000;
+		margin: 10px 0;
+		}
+
+		.login form input[type="submit"] {
+		background-color: #337ab7;
+		color: #fff;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		cursor: pointer;
+		margin-top: 10px;
+		}
+
+		.login form input[type="submit"]:hover {
+		background-color: #555;
+		}
+
+	</style>
+	<body>
+		<div class="login">
+			<h1>Login</h1>
+			<div class="links">
+				<a href="{{ url_for('login') }}" class="active">Login</a>
+				<a href="{{ url_for('register') }}">Register</a>
+			</div>
+			<form action="{{ url_for('login') }}" method="post">
+				<label for="username">
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="username" placeholder="Username" id="username" required>
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" name="password" placeholder="Password" id="password" required>
+				<div class="msg">{{ msg }}</div>
+				<input type="submit" value="Login">
+			</form>
+		</div>
+	</body>
+</html>

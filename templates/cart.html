@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Your Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .jumbotron {
+      background-color: #7c4a29;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+    .navbar {
+      background-color: #7c4a29;
+      color: #fff;
+      border: none;
+      border-radius: 0;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .navbar-toggle .icon-bar {
+      background-color: #fff;
+    }
+    .navbar .navbar-nav li {
+      margin-right: 20px;
+    }
+    .navbar .navbar-nav li .glyphicon {
+      margin-right: 5px;
+      font-size: 18px;
+    }
+    .jumbotron {
+      margin-bottom: 0;
+    }
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    table {
+  margin: 0 auto;
+  border-collapse: collapse;
+    }
+    table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    table td:first-child {
+      font-weight: bold;
+      text-align: right;
+      width: 120px;
+    }
+    table tr {
+      margin: 10px;
+    }
+    table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    table {
+      width: 400px;
+      margin-top: 20px;
+    }
+    .details p {
+      margin: 10px;
+      text-align: center;
+      font-size: xx-large;
+      
+    }
+    .details table {
+        text-align: center;
+        font-size: medium;
+    }
+    .btn-primary {
+      background-color: #7c4a29;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>ABCA-Project</h1>      
+    <p>L063</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/pythonlogin/home"> Home</a></li>
+        <li><a href="/pythonlogin/profile"> Your Account</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="details">
+  <p>Your Cart<p>
+      <table>
+          <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Actions</th>
+          </tr>
+          {% for item in cart_items %}
+          <tr>
+              <td>{{ item.product_name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>
+                  <form action="{{ url_for('remove_from_cart', cart_id=item.cart_id) }}" method="post">
+                      <input type="submit" value="Remove" class="btn btn-primary">
+                  </form>
+              </td>
+          </tr>
+          {% endfor %}
+      </table>
+  </body>
+</div>
+</html>
