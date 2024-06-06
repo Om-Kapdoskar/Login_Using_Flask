@@ -1,0 +1,57 @@
+CREATE DATABASE IF NOT EXISTS `pythonlogin` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `pythonlogin`;
+CREATE TABLE IF NOT EXISTS `accounts` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+  	`username` varchar(50) NOT NULL,
+  	`password` varchar(255) NOT NULL,
+  	`email` varchar(100) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `supplier` (
+	`sid` int NOT NULL AUTO_INCREMENT,
+  	`sname` varchar(50) NOT NULL,
+    PRIMARY KEY (`sid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `products` (
+	`prodid` int NOT NULL AUTO_INCREMENT,
+  	`name` varchar(50) NOT NULL,
+  	`price` int NOT NULL,
+    `desc` TEXT(10000) NOT NULL,
+    `img` TEXT(10000) NOT NULL,
+	`sid` int NOT NULL,
+    PRIMARY KEY (`prodid`),
+    foreign key(`sid`) references `supplier`(`sid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `cart` (
+    `cart_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT NOT NULL,
+    `product_id` INT NOT NULL,
+    `quantity` INT NOT NULL,
+    FOREIGN KEY (`user_id`) REFERENCES `accounts` (`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `products` (`prodid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO `supplier` (`sid`,`sname`) VALUES
+(1,'Flour Mill Inc.'),
+(2,'Sugar Delights Co.'),
+(3,'Butter Bliss Bakery Supplies');
+INSERT INTO `products` (`name`, `price`, `desc`, `img`, `sid`) VALUES
+('Fresh Baguettes', 3.99, 'Crusty and delicious baguettes for your daily needs.', 'https://img.freepik.com/free-photo/slice-bread-with-baguette-tablecloth_114579-5829.jpg', 1),
+('Chocolate Croissants', 2.49, 'Flaky croissants filled with rich chocolate.', 'https://sallysbakingaddiction.com/wp-content/uploads/2018/03/chocolate-croissants-2.jpg', 2),
+('Birthday Cake - Vanilla', 19.99, 'A classic vanilla birthday cake for special occasions.', 'https://5.imimg.com/data5/MZ/XC/NF/SELLER-49461693/birthday-vanilla-cake-500x500.jpg', 3),
+('Apple Pie', 8.99, 'Homemade apple pie with a golden crust.', 'https://www.inspiredtaste.net/wp-content/uploads/2022/11/Apple-Pie-Recipe-Video.jpg', 2),
+('Blueberry Muffins', 1.99, 'Moist and tender blueberry muffins.', 'https://www.culinaryhill.com/wp-content/uploads/2022/08/Blueberry-Muffins-Culinary-Hill-1200x800-1.jpg', 1),
+('Cupcakes - Assorted', 2.49, 'Assortment of colorful and flavorful cupcakes.', 'https://theobroma.in/cdn/shop/products/AssortedCupcakes1-green-dot.jpg?v=1669904125', 2),
+('Pecan Danishes', 3.49, 'Sweet and nutty danishes with a buttery pastry.', 'https://assets.sainsburys-groceries.co.uk/gol/6543763/1/640x640.jpg', 3),
+('Sourdough Bread', 4.99, 'Artisan sourdough bread with a tangy flavor.', 'https://theobroma.in/cdn/shop/products/WheatSourDoughLoaf2.jpg?v=1632146089', 1),
+('Chocolate Chip Cookies', 0.99, 'Classic chocolate chip cookies that melt in your mouth.', 'https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/62298.jpg', 2),
+('Cinnamon Rolls', 3.49, 'Soft and gooey cinnamon rolls with cream cheese icing.', 'https://www.allrecipes.com/thmb/VxNNFRBxh5G9osvtKw9J6T5PKsw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/9175447-d4cafe297e4746bfbe97e485ee057a0e.jpg', 3),
+('Gluten-Free Brownies', 2.99, 'Decadent gluten-free brownies for those with dietary restrictions.', 'https://www.chelseasmessyapron.com/wp-content/uploads/2019/06/Brownies-2.jpg', 1),
+('Fruit Tart - Mixed Berries', 5.99, 'A colorful and fruity tart with mixed berries.', 'https://driscolls.imgix.net/-/media/assets/recipes/mixed-berry-tart.ashx', 2),
+('Almond Croissants', 2.99, 'Buttery croissants filled with almond paste and topped with sliced almonds.', 'https://www.kitchensanctuary.com/wp-content/uploads/2017/04/Almond-Croissants-Square-FS-31.jpg', 3),
+('Pumpkin Pie', 9.99, 'Seasonal pumpkin pie with a spiced filling and flaky crust.', 'https://hips.hearstapps.com/hmg-prod/images/pumpkin-pie-index-649df3fde6247.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*', 2),
+('Scones - Blueberry', 1.49, 'Delightful blueberry scones perfect with tea or coffee.', 'https://www.mybakingaddiction.com/wp-content/uploads/2014/05/halved-blueberry-scone-hero.jpg', 1),
+('Eclairs - Chocolate', 2.79, 'Cream-filled eclairs drizzled with rich chocolate glaze.', 'https://4.imimg.com/data4/IO/CX/MY-3697919/chocolate-eclair-250x250.jpg', 3),
+('French Bread Loaf', 2.49, 'Traditional French bread loaf with a crisp crust.', 'https://www.melskitchencafe.com/wp-content/uploads/french-bread2.jpg', 1),
+('Cream Puffs', 2.29, 'Delicate and creamy puffs filled with sweet pastry cream.', 'https://www.allrecipes.com/thmb/cKAQgHlemMNGNZL5xqvPEwOYwhU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/15869-cream-puffs-DDMFS-4x3-1ce08744f7354e81b8c88950f9d93888.jpg', 2),
+('Lemon Bars', 2.79, 'Tangy lemon bars with a buttery shortbread crust.', 'https://www.onceuponachef.com/images/2019/04/Luscious-Lemon-Bars.jpg', 3);
